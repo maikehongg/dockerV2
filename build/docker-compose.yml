@@ -5,29 +5,29 @@ services:
     container_name: v2y_core
     restart: always
     volumes:
-      - ../config/v2ray:/etc/v2ray
-    networks:
+      - ./config/v2ray/etc/v2ray
+     networks:
       - webnet
-    ulimits:
+     ulimits:
       nproc: 65535
       nofile:
         soft: 65535
         hard: 65535
   
   caddy:
-    build: ./caddy
-    container_name: caddy
-    restart: always
-    volumes:
+     build: ./caddy
+     container_name: caddy
+     restart: always
+     volumes:
       - ../config/caddy:/etc/caddy
-      - ../config/ssl:/data/caddy/certificates
+      - ../config/ssl/data/caddy/certificates
       - ../html:/var/www/v2ray
-    ports:
-      - "80:80"
-      - "443:443"
-    networks:
+   ports:
+       "80:80"
+       "443:443"
+   networks:
       - webnet
-    ulimits:
+   ulimits:
       nproc: 65535
       nofile:
         soft: 65535
@@ -35,4 +35,4 @@ services:
 
 networks:
   webnet:
-    driver: bridge
+    driver: brdge
